@@ -4,14 +4,30 @@ import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
 
 
 export default function App() {
+  const [value, setValue] = useState({})
+  const [email, setEmail] = useState({})
+
   return (
     <View style={styles.container}>
+
       <Text style={styles.title}>Formulaire</Text>
+
       <TextInput style={styles.input}
-        placeholder="Enter your name" />
+        placeholder="Enter your name"
+        onChangeText={(text) => setValue({ value: text })}
+      />
+
       <TextInput style={styles.input}
-        placeholder="Passeword" />
-      <Pressable onPress={() => alert("All is ok")} style={{ height: 100, width: 100 }}><Text>Enter</Text></Pressable>
+        placeholder="Passeword"
+        secureTextEntry={true}
+        minLength={6} />
+
+      <Pressable
+        style={styles.button}
+        onPress={() => alert("All is ok")}>
+        <Text style={styles.btnText}>Enter</Text>
+      </Pressable>
+
     </View>
   );
 }
@@ -19,21 +35,39 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#36485f',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   title: {
-    fontSize: 40,
+    fontSize: 24,
     fontWeight: 'bold',
+    color: 'white',
+    paddingBottom: 10,
+    marginBottom: 40,
+    borderBottomColor: '#199187',
+    borderBottomWidth: 1,
   },
 
   input: {
-    width: 300,
-    height: 50,
-    borderWidth: 2,
-    margin: 20,
-    textAlign: 'center',
+
+    height: 40,
+    marginBottom: 30,
+    color: 'white',
+    borderBottomColor: '#f8f8f8',
+    borderBottomWidth: 1,
+  },
+
+  button: {
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#59cbbd',
+    marginTop: 30,
+  },
+
+  btnText: {
+    color: 'white',
+    fontWeight: 'bold',
   }
 });

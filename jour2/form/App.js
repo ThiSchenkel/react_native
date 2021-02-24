@@ -1,11 +1,16 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
 
 
 export default function App() {
-  const [value, setValue] = useState({})
-  const [email, setEmail] = useState({})
+  const [value, setValue] = useState("")
+  const [email, setEmail] = useState("")
+  const [reg, setReg] = useState(/^\S+@\S+\.\S+$/g)
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(value);
+  }
 
   return (
     <View style={styles.container}>
@@ -13,8 +18,9 @@ export default function App() {
       <Text style={styles.title}>Formulaire</Text>
 
       <TextInput style={styles.input}
-        placeholder="Enter your name"
-        onChangeText={(text) => setValue({ value: text })}
+        placeholder="Enter your Email"
+        onSubmitEditing={handleSubmit}
+        onChange={e => setValue(e.target.value)}
       />
 
       <TextInput style={styles.input}
